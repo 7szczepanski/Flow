@@ -1,5 +1,8 @@
 #include "Boom.h"
+#include <iostream>
 
+
+using namespace std;
 
 
 Boom::Boom(float x_, float y_)
@@ -29,13 +32,12 @@ void Boom::setup() {
 }
 void Boom::show(RenderWindow &target_) {
 	target_.draw(point);
-	check(particles);
 	for (int i = 0; i < particles.size(); i++) {
 		float ax, ay;
 		ax = (rand() % 10 + (-10));
 		ay = (rand() % 10 + (-10));
-		ax = ax* 0.0001;
-		ay = ay* 0.0001;
+		ax = ax* 0.001;
+		ay = ay* 0.001;
 		Vector2f acc = Vector2f(ax, ay);
 		particles[i].applyForce(acc);
 		particles[i].update();
@@ -45,6 +47,17 @@ void Boom::show(RenderWindow &target_) {
 
 void Boom::check(vector<Particle> &particles) {
 	if (particles.size() > 5) {
-		particles.erase(particles.begin()+1);
+		particles.erase(particles.begin(), particles.begin()+2);
+	}
+	cout << "Rozmiar array: " << particles.size() << endl;
+}
+
+void Boom::setPosition(Vector2f vec) {
+	position = vec;
+}
+
+void Boom::setColor(Color col) {
+	for (int i = 0; i < particles.size(); i++) {
+		particles[i].dot.setFillColor(col);
 	}
 }

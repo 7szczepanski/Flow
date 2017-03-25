@@ -18,6 +18,8 @@ public:
 	void setup();
 	void show(RenderWindow &);
 	void check(vector<Particle> &);
+	void setPosition(Vector2f);
+	void setColor(Color);
 protected:
 	int ramt;
 	Vector2f position;

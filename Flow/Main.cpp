@@ -17,13 +17,41 @@
 
 using namespace sf;
 
+sf::Color hsv(int hue, float sat, float val)
+{
+	hue %= 360;
+	while (hue<0) hue += 360;
 
+	if (sat<0.f) sat = 0.f;
+	if (sat>1.f) sat = 1.f;
+
+	if (val<0.f) val = 0.f;
+	if (val>1.f) val = 1.f;
+
+	int h = hue / 60;
+	float f = float(hue) / 60 - h;
+	float p = val*(1.f - sat);
+	float q = val*(1.f - sat*f);
+	float t = val*(1.f - sat*(1 - f));
+
+	switch (h)
+	{
+	default:
+	case 0:
+	case 6: return sf::Color(val * 255, t * 255, p * 255);
+	case 1: return sf::Color(q * 255, val * 255, p * 255);
+	case 2: return sf::Color(p * 255, val * 255, t * 255);
+	case 3: return sf::Color(p * 255, q * 255, val * 255);
+	case 4: return sf::Color(t * 255, p * 255, val * 255);
+	case 5: return sf::Color(val * 255, p * 255, q * 255);
+	}
+}
 
 int main()
 {
 	srand(time(NULL));
-	int width = 800;
-	int height = 800;
+	int width = 1500;
+	int height = 900;
 
 	sf::RenderWindow window(sf::VideoMode(width, height), "Flow");
 	sf::RectangleShape background(Vector2f(width, height));
@@ -35,13 +63,14 @@ int main()
 	Boom bom(width / 2, height / 2);
 
 	Vector2f friction;
-	
+	Vector2f mousePositionFloat;
+
 	friction = dot.getVelocity();
 	friction = friction *-1.f;
 	friction = friction / 1000.f;
 	
 
-	bom.setup();
+	
 
 		while (window.isOpen())
 		{
@@ -52,13 +81,20 @@ int main()
 					window.close();
 			}
 
+
+			bom.check(bom.particles);
+
+
+
 			window.clear();
 			window.draw(background);
-
+			mousePositionFloat = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
 			dot.applyForce(friction);
 			dot.update();
-			dot.show(window);
-
+			//dot.show(window);
+			bom.setPosition(mousePositionFloat);
+			bom.setup();
+			bom.setColor(hsv(bom.particles.size() % 360, 1, 1));
 			bom.show(window);
 			window.display();
 		}
