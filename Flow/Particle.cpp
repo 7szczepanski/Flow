@@ -20,7 +20,7 @@ void Particle::update() {
 	dot.setPosition(position);
 
 	acceleration = acceleration *0.f;
-	lifespan -= 2;
+	lifespan -= 1;
 }
 
 void Particle::show(RenderWindow &target_) {
