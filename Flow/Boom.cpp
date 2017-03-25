@@ -49,7 +49,6 @@ void Boom::check(vector<Particle> &particles) {
 	if (particles.size() > 5) {
 		particles.erase(particles.begin(), particles.begin()+2);
 	}
-	cout << "Rozmiar array: " << particles.size() << endl;
 }
 
 void Boom::setPosition(Vector2f vec) {
