@@ -17,6 +17,8 @@ public:
 	void update();
 	void applyForce(Vector2f);
 	Vector2f getVelocity();
+	bool isDead();
+	Color setColor(int hue, float sat, float val);
 protected:
 	int lifespan;
 	Vector2f velocity;
