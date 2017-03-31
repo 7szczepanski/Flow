@@ -6,7 +6,7 @@ Particle::Particle()
 {
 	dot.setFillColor(setColor(1,lifespan,1));
 	dot.setRadius(6);
-	lifespan = 455;
+	lifespan = 255;
 }
 
 

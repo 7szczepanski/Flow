@@ -24,8 +24,8 @@ int main()
 	HWND hWnd = GetConsoleWindow();
 	ShowWindow(hWnd, SW_HIDE);
 	srand(time(NULL));
-	int width = 1500;
-	int height = 900;
+	int width = 640;
+	int height = 360;
 
 	sf::RenderWindow window(sf::VideoMode(width, height), "Flow");
 	sf::RectangleShape background(Vector2f(width, height));

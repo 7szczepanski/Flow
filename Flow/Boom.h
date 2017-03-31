@@ -14,7 +14,7 @@ public:
 	Boom(float, float);
 	~Boom();
 
-	void setup(float );
+	void setup(float);
 	void show(RenderWindow &);
 	void setPosition(Vector2f);
 	void setColor(Color);
