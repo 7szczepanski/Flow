@@ -2,6 +2,12 @@
 
 
 
+double unirandi(float start, float end) {
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_real_distribution<double> dist(start, end);
+	return dist(mt);
+}
 
 Boom::Boom(float x_, float y_)
 {
@@ -18,10 +24,10 @@ void Boom::setup(float off) {
 	point.setPosition(position);
 	point.setFillColor(Color::Magenta);
 	point.setRadius(3);
-	
-	ramt = rand() % 7 + 1;
+	float rad = unirandi(2, 7);
+	ramt = unirandi(1,2);
 	for (int i = 0; i < ramt; i++) {
-		Particle dot;
+		Particle dot(rad);
 		dot.setPosition(this->position.x+off,this->position.y);
 		particles.push_back(dot);
 	}
@@ -60,3 +66,4 @@ void Boom::apply(float randx,float randy){
 		particles[i].applyForce(acc);
 	}
 }
+

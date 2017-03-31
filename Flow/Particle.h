@@ -8,7 +8,7 @@ class Particle
 public:
 	CircleShape dot;
 	
-	Particle();
+	Particle(float);
 	~Particle();
 
 	void show(RenderWindow &);

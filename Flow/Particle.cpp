@@ -1,12 +1,15 @@
 #include "Particle.h"
 
 
+float Umapi(float value, float istart, float istop, float ostart, float ostop) {
+	return ostart + (ostop - ostart)*((value - istart) / (istop - istart));
+}
 
-Particle::Particle()
+Particle::Particle(float rad)
 {
-	dot.setFillColor(setColor(1,lifespan,1));
-	dot.setRadius(6);
-	lifespan = 255;
+	
+	dot.setRadius(rad);
+	lifespan = 455;
 }
 
 
@@ -21,6 +24,7 @@ void Particle::update() {
 
 	acceleration = acceleration *0.f;
 	lifespan -= 1;
+	dot.setFillColor(setColor(Umapi(lifespan,455,0,360,0), 1, 1));
 }
 
 void Particle::show(RenderWindow &target_) {

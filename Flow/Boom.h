@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 #include "Particle.h"
 #include <vector>
+#include <random>
 
 
 using namespace sf;
