@@ -30,14 +30,17 @@ int main()
 	HWND hWnd = GetConsoleWindow();
 	ShowWindow(hWnd, SW_HIDE);
 	srand(time(NULL));
-	int width = 1080;
+	int width = 1280;
 	int height = 720;
 
-	sf::RenderWindow window(sf::VideoMode(width, height), "Flow");
+	sf::ContextSettings settings;
+	settings.antialiasingLevel = 8;
+
+	sf::RenderWindow window(sf::VideoMode(width, height), "Flow",sf::Style::Default,settings);
 	sf::RectangleShape background(Vector2f(width, height));
 	background.setFillColor(sf::Color(51, 51, 51));
 	std::vector<Boom> bums;
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 7; i++) {
 		Boom bom(width / 2, height / 2);
 		bums.push_back(bom);
 	}

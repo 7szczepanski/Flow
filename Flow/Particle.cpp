@@ -9,7 +9,7 @@ Particle::Particle(float rad)
 {
 	
 	dot.setRadius(rad);
-	lifespan = 455;
+	lifespan = 255;
 }
 
 
@@ -24,7 +24,7 @@ void Particle::update() {
 
 	acceleration = acceleration *0.f;
 	lifespan -= 1;
-	dot.setFillColor(setColor(Umapi(lifespan,455,0,360,0), 1, 1));
+	dot.setFillColor(setColor(Umapi(lifespan,255,0,360,0), 1, 1));
 }
 
 void Particle::show(RenderWindow &target_) {

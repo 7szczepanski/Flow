@@ -24,8 +24,8 @@ void Boom::setup(float off) {
 	point.setPosition(position);
 	point.setFillColor(Color::Magenta);
 	point.setRadius(3);
-	float rad = unirandi(2, 7);
-	ramt = unirandi(1,2);
+	float rad = unirandi(1, 3);
+	ramt = unirandi(1,4);
 	for (int i = 0; i < ramt; i++) {
 		Particle dot(rad);
 		dot.setPosition(this->position.x+off,this->position.y);
