@@ -1,7 +1,5 @@
 #include "Boom.h"
 
-
-
 double unirandi(float start, float end) {
 	std::random_device rd;
 	std::mt19937 mt(rd());
@@ -22,19 +20,19 @@ Boom::~Boom()
 void Boom::setup(float off) {
 
 	point.setPosition(position);
-	point.setFillColor(Color::Magenta);
+	point.setFillColor(sf::Color::Magenta);
 	point.setRadius(3);
 	float rad = unirandi(1, 3);
 	ramt = unirandi(1,4);
 	for (int i = 0; i < ramt; i++) {
 		Particle dot(rad);
-		dot.setPosition(this->position.x+off,this->position.y);
+		dot.setPosition(this->position.x+off,this->position.y-off);
 		particles.push_back(dot);
 	}
 
 
 }
-void Boom::show(RenderWindow &target_) {
+void Boom::show(sf::RenderWindow &target_) {
 	target_.draw(point);
 	for (int i = 0; i < particles.size(); i++) {
 	
@@ -48,11 +46,11 @@ void Boom::show(RenderWindow &target_) {
 }
 
 
-void Boom::setPosition(Vector2f vec) {
+void Boom::setPosition(sf::Vector2f vec) {
 	position = vec;
 }
 
-void Boom::setColor(Color col) {
+void Boom::setColor(sf::Color col) {
 	for (int i = 0; i < particles.size(); i++) {
 		particles[i].dot.setFillColor(col);
 	}
@@ -60,7 +58,7 @@ void Boom::setColor(Color col) {
 
 void Boom::apply(float randx,float randy){
 	for (int i = 0; i < particles.size(); i++) {
-		Vector2f acc;
+		sf::Vector2f acc;
 		acc.x = randx;
 		acc.y = randy;
 		particles[i].applyForce(acc);

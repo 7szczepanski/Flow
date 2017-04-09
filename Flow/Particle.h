@@ -1,28 +1,26 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 
-using namespace sf;
-
 class Particle
 {
 public:
-	CircleShape dot;
+	sf::CircleShape dot;
 	
 	Particle(float);
 	~Particle();
 
-	void show(RenderWindow &);
+	void show(sf::RenderWindow &);
 	void setVelocity(float, float);
 	void setPosition(float, float);
 	void update();
-	void applyForce(Vector2f);
-	Vector2f getVelocity();
+	void applyForce(sf::Vector2f);
+	sf::Vector2f getVelocity();
 	bool isDead();
-	Color setColor(int hue, float sat, float val);
+	sf::Color setColor(int, float, float);
 protected:
 	int lifespan;
-	Vector2f velocity;
-	Vector2f acceleration;
-	Vector2f position;
+	sf::Vector2f velocity;
+	sf::Vector2f acceleration;
+	sf::Vector2f position;
 };
 

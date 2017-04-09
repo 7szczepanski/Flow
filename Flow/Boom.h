@@ -4,27 +4,24 @@
 #include <vector>
 #include <random>
 
-
-using namespace sf;
-
 class Boom
 {
 public:
-	CircleShape point;
+	sf::CircleShape point;
 	std::vector<Particle> particles;
 	Boom(float, float);
 	~Boom();
 
 	void setup(float);
-	void show(RenderWindow &);
-	void setPosition(Vector2f);
-	void setColor(Color);
+	void show(sf::RenderWindow &);
+	void setPosition(sf::Vector2f);
+	void setColor(sf::Color);
 	void apply(float, float);
 protected:
 	int ramt;
-	Vector2f position;
-	Vector2f velocity;
-	Vector2f acceleration;
+	sf::Vector2f position;
+	sf::Vector2f velocity;
+	sf::Vector2f acceleration;
 
 };
 

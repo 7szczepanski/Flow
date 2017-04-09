@@ -7,7 +7,6 @@ float Umapi(float value, float istart, float istop, float ostart, float ostop) {
 
 Particle::Particle(float rad)
 {
-	
 	dot.setRadius(rad);
 	lifespan = 255;
 }
@@ -27,7 +26,7 @@ void Particle::update() {
 	dot.setFillColor(setColor(Umapi(lifespan,255,0,360,0), 1, 1));
 }
 
-void Particle::show(RenderWindow &target_) {
+void Particle::show(sf::RenderWindow &target_) {
 	target_.draw(dot);
 }
 
@@ -43,11 +42,11 @@ void Particle::setVelocity(float x, float y) {
 	velocity.y = y;
 }
 
-void Particle::applyForce(Vector2f force) {
+void Particle::applyForce(sf::Vector2f force) {
 	acceleration += force;
 }
 
-Vector2f Particle::getVelocity() {
+sf::Vector2f Particle::getVelocity() {
 	return velocity;
 }
 
@@ -62,7 +61,7 @@ bool Particle::isDead() {
 
 }
 
-Color Particle::setColor(int hue, float sat, float val) {
+sf::Color Particle::setColor(int hue, float sat, float val) {
 
 	hue %= 360;
 	while (hue < 0) hue += 360;

@@ -1,15 +1,11 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include <vector>
 #include <random>
 #include <Windows.h>
 #include <time.h>
 #include "Particle.h"
 #include "Boom.h"
-
-
-using namespace sf;
-
-
 
 double unirand(float start, float end) {
 	std::random_device rd;
@@ -30,30 +26,24 @@ int main()
 	HWND hWnd = GetConsoleWindow();
 	ShowWindow(hWnd, SW_HIDE);
 	srand(time(NULL));
-	int width = 1280;
-	int height = 720;
+	constexpr int width{ 1280 };
+	constexpr int height{ 720 };
 
 	sf::ContextSettings settings;
 	settings.antialiasingLevel = 8;
 
 	sf::RenderWindow window(sf::VideoMode(width, height), "Flow",sf::Style::Default,settings);
-	sf::RectangleShape background(Vector2f(width, height));
+	sf::RectangleShape background(sf::Vector2f(width, height));
 	background.setFillColor(sf::Color(51, 51, 51));
-	std::vector<Boom> bums;
+	std::vector<Boom> cluster;
 	for (int i = 0; i < 7; i++) {
-		Boom bom(width / 2, height / 2);
-		bums.push_back(bom);
+		Boom particle(width / 2, height / 2);
+		cluster.push_back(particle);
 	}
 	
+	sf::Vector2f mousePositionFloat;
 
-	Vector2f mousePositionFloat;
-
-
-	float xam = 0;
-	float yam = 0;
-
-	float xamb = 0;
-	float yamb = 0;
+	float xam{ 0 }, yam{ 0 }, offset{ 0 };
 
 		while (window.isOpen())
 		{
@@ -67,21 +57,17 @@ int main()
 			window.clear();
 			window.draw(background);
 
-
 			mousePositionFloat = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
-			for (int i = bums.size() - 1; i >= 0; i--) {
-				xam = unirand(-0.065, 0.065);//rand() % 199 + 1; xam = Umap(xam, 1, 199, -0.045, 0.045);
-				yam = unirand(-0.065, 0.065);//yam = rand() % 199 + 1; yam = Umap(yam, 1, 199, -0.045, 0.045);
+			for (int i = cluster.size() - 1; i >= 0; i--) {
+				xam = unirand(-0.065, 0.065);
+				yam = unirand(-0.065, 0.065);
+				offset = unirand(-0.195, 0.195);
 
-
-				bums[i].setPosition(mousePositionFloat);
-				bums[i].setup(xam);
-				bums[i].apply(xam, yam);
-				bums[i].show(window);
+				cluster[i].setPosition(mousePositionFloat);
+				cluster[i].setup(offset);
+				cluster[i].apply(xam, yam);
+				cluster[i].show(window);
 			}
-	
-
-
 			window.display();
 		}
 
